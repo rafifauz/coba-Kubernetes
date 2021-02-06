@@ -2,7 +2,7 @@
 
 Kubectl, KOPS 
 
-# kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
+## kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
 
 alias  k="kubectl"
 
@@ -12,7 +12,7 @@ k- create -f namespace.yaml
 kubectl apply -f depolyment.yaml
 
 kubectl get pods -n kube-system
-# Cheatsheet ( https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los )
+## Cheatsheet ( https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los )
 minikube version
 minikube start
 echo $(minikube ip)
