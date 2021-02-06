@@ -13,6 +13,7 @@ kubectl apply -f depolyment.yaml
 
 kubectl get pods -n kube-system
 ## Cheatsheet ( https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los )
+```
 minikube version
 minikube start
 echo $(minikube ip)
@@ -27,7 +28,7 @@ kubectl get services #show service IP that connect pods IP
 kubectl logs $POD_NAME
 kubectl exec -it $POD_NAME bash
 curl localhost:8080 #Run this after run exec and get open port using " cat server.js "
-
+```
 ---------------------------------------------------------------------
 ## KUBERNETES DEPLOYMENT
 kubectl describe deployment
