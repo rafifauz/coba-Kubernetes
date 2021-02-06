@@ -74,7 +74,7 @@ kubectl get services
 kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
 ```
 
-###Hasil : 
+###H# asil : 
 ```
 NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 kubernetes-bootcamp   NodePort    10.103.92.172   <none>        8080:32300/TCP   2s
