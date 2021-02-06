@@ -32,7 +32,7 @@ curl localhost:8080 #Run this after run exec and get open port using " cat serve
 ## KUBERNETES DEPLOYMENT
 kubectl describe deployment
 
-###show all deploy (mirip docker ps)
+### show all deploy (mirip docker ps)
 ```
 kubectl get deployments 
 ```
@@ -63,7 +63,7 @@ curl http://localhost:8001/api/v1/namespaces/default/pods/POD_NAME/proxy/
 ```
 ---------------------------------------------------------------------
 ## KUBERNETES SERVICE
-###Service IP is connect pods IP even on diferent node
+### Service IP is connect pods IP even on diferent node
 ```
 kubectl get services 
 ```
