@@ -3,6 +3,7 @@
 Kubectl, KOPS 
 ### Yang mau coba :
 Dokumentasi https://kubernetes.io/docs/tutorials/kubernetes-basics/
+
 Tutorial https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/cluster-interactive/
 
 ### kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
