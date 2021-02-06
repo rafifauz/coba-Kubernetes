@@ -1,6 +1,9 @@
 # coba-Kubernetes
 
 Kubectl, KOPS 
+### Yang mau coba :
+https://kubernetes.io/docs/tutorials/kubernetes-basics/
+
 
 ### kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
 
