@@ -45,16 +45,22 @@ kubectl proxy
 kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 ```
 ### Melihat pods/service yg berjalan pada suatu Deployment app (mirip docker run)
+```
 kubectl get pods -l run=kubernetes-bootcamp
+```
+```
 kubectl get services -l run=kubernetes-bootcamp
+```
 ---------------------------------------------------------------------
 ## KUBERNETES PODS
 
 ### Cara akses pod
+```
 POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
-
+```
+```
 curl http://localhost:8001/api/v1/namespaces/default/pods/POD_NAME/proxy/
-
+```
 ---------------------------------------------------------------------
 ## KUBERNETES SERVICE
 ###Service IP is connect pods IP even on diferent node
