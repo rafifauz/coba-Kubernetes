@@ -73,10 +73,12 @@ kubectl get services
 ```
 kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
 ```
-Hasil : 
+
+###Hasil : 
+```
 NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 kubernetes-bootcamp   NodePort    10.103.92.172   <none>        8080:32300/TCP   2s
-
+```
 ### Cara akses service
 ```
 NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
@@ -110,7 +112,7 @@ kubectl get rs
 Resource :
  		Resource limit (minimal) & Request Limit (Maksimum) (contoh: CPU 1000MI & RAM 1000Mim)
 
-##Kubernetes Controller Manager
+## Kubernetes Controller Manager
 ### 1. Deployment Controller
 ### 2. Namespace Controller
 ### 3. Endpoint
