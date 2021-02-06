@@ -29,7 +29,7 @@ kubectl exec -it $POD_NAME bash
 curl localhost:8080 #Run this after run exec and get open port using " cat server.js "
 
 ---------------------------------------------------------------------
-#KUBERNETES DEPLOYMENT
+## KUBERNETES DEPLOYMENT
 kubectl describe deployment
 
 ###show all deploy (mirip docker ps)
@@ -48,7 +48,7 @@ kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kube
 kubectl get pods -l run=kubernetes-bootcamp
 kubectl get services -l run=kubernetes-bootcamp
 ---------------------------------------------------------------------
-#KUBERNETES PODS
+## KUBERNETES PODS
 
 ### Cara akses pod
 POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
@@ -56,7 +56,7 @@ POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metada
 curl http://localhost:8001/api/v1/namespaces/default/pods/POD_NAME/proxy/
 
 ---------------------------------------------------------------------
-#KUBERNETES SERVICE
+## KUBERNETES SERVICE
 ###Service IP is connect pods IP even on diferent node
 ```
 kubectl get services 
@@ -80,7 +80,7 @@ kubectl delete service -l run=kubernetes-bootcamp
 ```
 
 ---------------------------------------------------------------------
-#KUBERNETES LABEL
+## KUBERNETES LABEL
 kubectl describe pods $POD_NAME
 
 ### Memberikan label kepada Pod
@@ -89,13 +89,13 @@ kubectl label pod $POD_NAME app=v1
 ```
 ---------------------------------------------------------------------
 
-#KUBERNETES REPLICA-SET
+## KUBERNETES REPLICA-SET
 kubectl get rs
 ---------------------------------------------------------------------
 
 
 ========================================================================================================
-##Kubernetes Sceduller 
+## Kubernetes Sceduller 
 ### 1. Filtering Node: Difilter node terbaik
 ### 2. Ranking Node: Kemudian diranking  berdasarkan Resource (sisa resource dan jumlah pod yang ada) 
 Resource :
