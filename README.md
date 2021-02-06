@@ -2,7 +2,7 @@
 
 Kubectl, KOPS 
 
-## kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
+### kubectl -> API Server -> ETCD -> API Server (sudah ada Tidak) > kalau tidak ada, buat baru
 
 alias  k="kubectl"
 
