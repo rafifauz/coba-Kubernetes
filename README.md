@@ -16,6 +16,10 @@ k- create -f namespace.yaml
 kubectl apply -f depolyment.yaml
 
 kubectl get pods -n kube-system
+
+
+<img src='https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los' align:center width="70%" height="70%" >
+
 ## Cheatsheet ( https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los )
 ```
 minikube version
