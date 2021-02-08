@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nodejs
+  template:
+    metadata:
+      labels:
+        name: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: raxer/nodejs-api
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 3000
+      port: 3000
+      nodePort: 30003
+  selector:
+    name: nodejs
+
+
+        
