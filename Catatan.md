@@ -85,19 +85,136 @@ kubectl describe pods $POD_NAME
 ```
 kubectl label pod $POD_NAME app=v1
 ```
+
+---------------------------------------------------------------------
+#KUBERNETES namespace
+GET
+```
+kubectl get ingress -n pesbuk-ns
+```
+```
+kubectl delete namespaces pesbuk-ns
+```
 ---------------------------------------------------------------------
 
 #KUBERNETES REPLICA-SET
 kubectl get rs
 ---------------------------------------------------------------------
 
+#KUBERNETES INGRESS
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.27.1/deploy/static/mandatory.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.27.1/deploy/static/provider/aws/service-l4.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.27.1/deploy/static/provider/aws/patch-configmap-l4.yaml
+
+kubectl -n ingress-nginx
+### Masukan Ingress ke aws
+kubectl -n ingress-nginx get svc
+ke route 53 buat cname & paste hasuil svc ingress
+---------------------------------------------------------------------
+
+#KUBERNETES SECRET
+echo -n "haha" | base64
+echo -n "aGFoYQ==" | base64 -d
+
+https://gist.github.com/elqahtani/04e515dd6e0926b80702fa61cf8cb270
+
+---------------------------------------------------------------------
+
+#KUBERNETES AUTOSCALLER
+kops get cluster
+kops get instancegroup
+
+##### Edit
+kops edit instancegroup instancegroup_NAME --name cluster_NAME
+kops edit cluster --name cluster_NAME
+
+##### Edit Cluster
+```
+spec:
+  additionalPolicies:
+    node: |
+      [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "autoscaling:DescribeAutoScalingGroups",
+            "autoscaling:DescribeAutoScalingInstances",
+            "autoscaling:SetDesiredCapacity",
+            "autoscaling:DescribeLaunchConfigurations",
+            "autoscaling:DescribeTags",
+            "autoscaling:TerminateInstanceInAutoScalingGroup"
+          ],
+          "Resource": ["*"]
+        }
+      ]
+  api:
+    dns: {}
+```
+kops update cluster --name kube.belajarlinux.web.id --yes
+kops rolling-update cluster --name kube.belajarlinux.web.id
+
+##### Edit 
+wget https://raw.githubusercontent.com/kubernetes/autoscaler/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml
+```
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cluster-autoscaler
+  template:
+    metadata:
+      labels:
+        app: cluster-autoscaler
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '8085'
+    spec:
+      serviceAccountName: cluster-autoscaler
+      containers:
+        - image: asia.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler:v1.15.6
+          name: cluster-autoscaler
+          resources:
+            limits:
+              cpu: 100m
+              memory: 300Mi
+            requests:
+              cpu: 100m
+              memory: 300Mi
+          command:
+            - ./cluster-autoscaler
+            - --v=4
+            - --stderrthreshold=info
+            - --cloud-provider=aws
+            - --skip-nodes-with-local-storage=false
+            - --expander=least-waste
+            #- --nodes=2:4:kube.belajarlinux.web.id
+            - --nodes=3:5:nodes-ap-southeast-1a.kube.rafifauz.site
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/kube.rafifauz.site
+          env:
+            - name: AWS_REGION
+              value: ap-southeast-1
+          volumeMounts:
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs/ca-bundle.crt #/etc/ssl/certs/ca-bundle.crt for Amazon Linux Worker Nodes
+              readOnly: true
+          imagePullPolicy: "Always"
+      volumes:
+        - name: ssl-certs
+          hostPath:
+            path: "/etc/ssl/certs/ca-bundle.crt"
+```
+** nodes=2:5 adalah min 2 maks 5
+
+kubectl scale deployment pesbuk --replicas=20
+
 
 ========================================================================================================
-##Kubernetes Sceduller 
+## Kubernetes Sceduller 
 ### 1. Filtering Node: Difilter node terbaik
 ### 2. Ranking Node: Kemudian diranking  berdasarkan Resource (sisa resource dan jumlah pod yang ada) 
 Resource :
  		Resource limit (minimal) & Request Limit (Maksimum) (contoh: CPU 1000MI & RAM 1000Mim)
+taints tolleration and affinity node
 
 ##Kubernetes Controller Manager
 ### 1. Deployment Controller

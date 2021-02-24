@@ -1,45 +1,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodejs
+  name: wordpress
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      name: nodejs
+      name: wordpress
   template:
     metadata:
       labels:
-        name: nodejs
+        name: wordpress
     spec:
       containers:
-      - name: nodejs
-        image: raxer/nodejs-api
+      - name: wordpress
+        image: raxer/wordpress
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs
+  name: wordpress
 spec:
   #type: LoadBalancer
   ports:
-    - port: 3000
+    - port: 80
       #nodePort: 30080
   selector:
-    name: nodejs
+    name: wordpress
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nodejs-ingress
+  name: nginx-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: js.rafifauz.site
+  - host: wordpress.rafifauz.site
     http:
       paths:
       #- path: /belajar
       - backend:
-          serviceName: nodejs
-          servicePort: 3000
+          serviceName: wordpress
+          servicePort: 80

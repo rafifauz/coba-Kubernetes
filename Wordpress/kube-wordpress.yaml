@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: wordpress
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      name: nginx
+      name: wordpress
   template:
     metadata:
       labels:
-        name: nginx
+        name: wordpress
     spec:
       containers:
-      - name: nginx
-        image: nginx
+      - name: wordpress
+        image: raxer\wordpress
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: wordpress
 spec:
   type: NodePort
   ports:
     - targetPort: 80
       port: 80
-      nodePort: 30080
+      nodePort: 30081
   selector:
-    name: nginx
+    name: wordpress
 
 
 

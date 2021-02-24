@@ -13,11 +13,13 @@ sudo apt  install awscli
 aws configure
 ssh-keygen
 
-tee ~/.basrc << EOF
-export bucket_name=belajarlinux-states-stores
-export KOPS_CLUSTER_NAME=kube.belajarlinux.web.id
+echo "export bucket_name=kube-etcd" >> ~/.basrc
+echo "export KOPS_CLUSTER_NAME=kube.rafifauz.site" >> ~/.basrc
+echo "export KOPS_STATE_STORE=s3://${bucket_name}" >> ~/.basrc
+
+export bucket_name=kube-etcd
+export KOPS_CLUSTER_NAME=kube.rafifauz.site
 export KOPS_STATE_STORE=s3://${bucket_name}
-EOF
 
 source .bashrc
 

@@ -1,45 +1,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web1-laravel
+  name: laravel
 spec:
   replicas: 3
   selector:
     matchLabels:
-      name: web1-laravel
+      name: laravel
   template:
     metadata:
       labels:
-        name: web1-laravel
+        name: laravel
     spec:
       containers:
-      - name: web1-laravel
+      - name: laravel
         image: raxer/laravel
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: web1-laravel
+  name: laravel
 spec:
   #type: LoadBalancer
   ports:
     - port: 8080
-      #nodePort: 30088
+      #nodePort: 30080
   selector:
-    name: web1-laravel
+    name: laravel
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: laravel-ingress
   annotations:
-    laravel.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: nginx.belajarlinux.web.id
+  - host: lara.rafifauz.site
     http:
       paths:
       #- path: /belajar
       - backend:
           serviceName: laravel
-          servicePort: 80
+          servicePort: 8080

@@ -16,10 +16,6 @@ k- create -f namespace.yaml
 kubectl apply -f depolyment.yaml
 
 kubectl get pods -n kube-system
-
-
-<img src='https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los' align:center width="70%" height="70%" >
-
 ## Cheatsheet ( https://miro.medium.com/max/3296/0*ZN7R20r0cpCG3los )
 ```
 minikube version
@@ -121,22 +117,22 @@ Resource :
  		Resource limit (minimal) & Request Limit (Maksimum) (contoh: CPU 1000MI & RAM 1000Mim)
 
 ## Kubernetes Controller Manager
-#### 1. Deployment Controller
-#### 2. Namespace Controller
-#### 3. Endpoint
-#### 4. Cronjob
-#### 5. PV Controller
-#### 6. Service Account Controller
-#### 7. Statefulset
-#### 8. Replicaset
-#### 9. Node Controller
+### 1. Deployment Controller
+### 2. Namespace Controller
+### 3. Endpoint
+### 4. Cronjob
+### 5. PV Controller
+### 6. Service Account Controller
+### 7. Statefulset
+### 8. Replicaset
+### 9. Node Controller
 	     Akan melakukan beberapa step pengecekan Node	
 		> Node Controller Check : 5 detik
 		> Monitor Grace Period : 40 detik
 		> Pod Eviction Timeout : 5 Menit
 		Jika resource Node tidak sesuai pod yg dibuat maka Pod Pending
-#### 10. PV Binder Controller
-#### 11. Replication Controller
+### 10. PV Binder Controller
+### 11. Replication Controller
 
 =========================================================================================
 
